@@ -10,8 +10,8 @@
     {% for i in posts %}
     <h1>{{ i.title  }} </h1><p></p>
     <h2>{{ i.content  }} </h2><p></p>
-    <h3>price  = {{ i.price  }} </h3><p></p>
-    photo<p></p>
+    <h3>price  = {{ i.price  }}₽ </h3><p></p>
+    
     <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto" >
     {% endfor %}
 </body>
