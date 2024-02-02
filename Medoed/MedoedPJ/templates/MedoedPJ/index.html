@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {{ title }} !!!!!!!!! </title>
-</head>
-<body>
+{% extends "MedoedPJ/base.html" %}
+{% block info %}
     <h1>{{ title }}!</h1>
     {% for i in posts %}
     <h1>{{ i.title  }} </h1><p></p>
@@ -14,5 +8,4 @@
     
     <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto" >
     {% endfor %}
-</body>
-</html>
+{% endblock %}

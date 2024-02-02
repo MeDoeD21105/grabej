@@ -18,3 +18,5 @@ class ProductClass(ListView):
         
         return context
     
+def base(request):
+    return render(request, "MedoedPJ/base.html")
