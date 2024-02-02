@@ -8,4 +8,14 @@ class Product(models.Model):
     photo = models.ImageField(upload_to = "photos/ ",blank = True, verbose_name = "Фото")
     price = models.DecimalField( max_digits = 7, decimal_places = 2, verbose_name = "Цена")
     quantity = models.IntegerField( default=0, validators=[MinValueValidator(0), MaxValueValidator(1000)], verbose_name = "Количество")
+    sellerr = models.ForeignKey("Product", on_delete = models.PROTECT, null = True,)
     
+    def __str__(self):
+        return self.title
+    
+class Seller(models.Model):
+    name = models.CharField(max_length=100, db_index=True )
+    slug = models.SlugField(max_length=255, unique=True, db_index=True)
+
+    def __str__(self):
+        return self.name
