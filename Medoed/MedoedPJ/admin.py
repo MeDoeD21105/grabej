@@ -6,3 +6,5 @@ class ProductAdmin(admin.ModelAdmin):
      list_display = ("title", "content", "price", "quantity", "sellerr")
 
 admin.site.register(Product, ProductAdmin)
+
+admin.site.register(Seller)
