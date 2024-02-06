@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>grabej</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     
-    <h1> grabej base.html </h1>
-    <a href="{% url 'home2' %}">О нас</a>
+    <h1> {{ title }} base.html </h1>
+    {% for m in points %}
+    <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+{% endfor %}
 {% block info %}
 {% endblock %}
 </body>
