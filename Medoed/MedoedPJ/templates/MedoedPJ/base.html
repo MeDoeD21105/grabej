@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    <h1> {{ title }} {{ title }}.html </h1>
+    <!-- <h1> {{ title }} {{ title }}.html </h1> -->
     {% for m in points %}
     <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
 {% endfor %}

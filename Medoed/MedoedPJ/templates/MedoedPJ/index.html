@@ -10,7 +10,8 @@
     <h2> В наличие {{ i.quantity }} шт</h2>
     <h3>price  = {{ i.price  }}₽ </h3><p></p>
     {% if i.photo %}
-    <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto" >
+    <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto"><p></p>
+    <a href = "{{ i.get_absolute_url }}"> Читать пост</a>
     {% endif %}
     {% endfor %}
 {% endblock %}

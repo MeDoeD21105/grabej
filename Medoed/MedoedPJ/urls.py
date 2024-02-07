@@ -7,4 +7,5 @@ urlpatterns = [
     path("", BaseClass.as_view(), name= "Home"),
     path("add_prod/", ProdAddClass.as_view(), name= "add_prod"),
     path("contact/", ContactClass.as_view(), name= "contact"),
+    path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
 ]

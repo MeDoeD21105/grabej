@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
@@ -9,6 +11,10 @@ class Product(models.Model):
     price = models.DecimalField( max_digits = 7, decimal_places = 2, verbose_name = "Цена")
     quantity = models.IntegerField( default=0, validators=[MinValueValidator(0), MaxValueValidator(1000)], verbose_name = "Количество")
     sellerr = models.ForeignKey("Seller", on_delete = models.PROTECT, null = True,)
+    slug = models.SlugField(max_length=200, unique=True, db_index=True, blank = True, null = True)
+    
+    def get_absolute_url(self):
+        return reverse("post", kwargs={"post_slug": self.slug })
     
     def __str__(self):
         return self.title
