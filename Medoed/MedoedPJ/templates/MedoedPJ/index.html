@@ -4,10 +4,13 @@
 {% block info %}
     <h1>{{ title }}!index.html</h1>
     {% for i in posts %}
-    <h1>{{ i.title  }} </h1><p></p>
-    <h2>{{ i.content  }} </h2><p></p>
-    <h3>price  = {{ i.price  }}₽ </h3><p></p>
+    <h1>{{ i.title }}  </h1><p></p>
+    <h2>{{ i.content |linebreaks|truncatewords:50 }}  </h2><p></p>
     
+    <h2> В наличие {{ i.quantity }} шт</h2>
+    <h3>price  = {{ i.price  }}₽ </h3><p></p>
+    {% if i.photo %}
     <img src="{{i.photo.url}}" alt="{{i.title}}" height="150" width="auto" >
+    {% endif %}
     {% endfor %}
 {% endblock %}
