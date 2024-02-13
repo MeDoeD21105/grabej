@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from .utils import *
+from .forms import *
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 
 # Create your views here.
 
@@ -29,8 +30,7 @@ class BaseClass(DataMixin, ListView):
         context["title"] = "baseClass"
         return dict(list(context.items()) + list(c_def.items()))
 
-class ContactClass(DataMixin,ListView):
-    model = Product
+class ContactClass(DataMixin, FormView):
     template_name = "MedoedPJ/contact.html"
     
     
@@ -41,14 +41,20 @@ class ContactClass(DataMixin,ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 class ProdAddClass(DataMixin,ListView):
-    model = Product
+    form_class = Added_ProdForm
     template_name = "MedoedPJ/add_prod.html"
+    
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context()
         context["title"] = "ProdAdd"
         return dict(list(context.items()) + list(c_def.items()))
+    
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+        
     
 class ShowPost(DataMixin, DetailView):
     model = Product
