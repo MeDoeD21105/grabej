@@ -44,7 +44,7 @@ class ContactClass(DataMixin, ListView):
 class ProdAddClass(DataMixin, FormView):
     form_class = Added_ProdForm
     template_name = "MedoedPJ/add_prod.html"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("Home")
     
     
     def get_context_data(self, *, object_list=None, **kwargs):
