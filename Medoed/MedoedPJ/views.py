@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from .models import *
 from .utils import *
 from .forms import *
@@ -30,7 +31,7 @@ class BaseClass(DataMixin, ListView):
         context["title"] = "baseClass"
         return dict(list(context.items()) + list(c_def.items()))
 
-class ContactClass(DataMixin, FormView):
+class ContactClass(DataMixin, ListView):
     template_name = "MedoedPJ/contact.html"
     
     
@@ -40,9 +41,10 @@ class ContactClass(DataMixin, FormView):
         context["title"] = "Contact"
         return dict(list(context.items()) + list(c_def.items()))
 
-class ProdAddClass(DataMixin,ListView):
+class ProdAddClass(DataMixin, FormView):
     form_class = Added_ProdForm
     template_name = "MedoedPJ/add_prod.html"
+    success_url = reverse_lazy("home")
     
     
     def get_context_data(self, *, object_list=None, **kwargs):
