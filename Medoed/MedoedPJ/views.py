@@ -4,7 +4,7 @@ from .models import *
 from .utils import *
 from .forms import *
 
-from django.views.generic import ListView, DetailView, FormView
+from django.views.generic import ListView, DetailView, FormView, CreateView
 
 # Create your views here.
 
@@ -42,7 +42,7 @@ class ContactClass(DataMixin,ListView):
         context["title"] = "Contact"
         return dict(list(context.items()) + list(c_def.items()))
 
-class ProdAddClass(DataMixin, FormView):
+class ProdAddClass(DataMixin, CreateView):
     form_class = Added_ProdForm
     template_name = "MedoedPJ/add_prod.html"
     success_url = reverse_lazy("Home")
@@ -53,11 +53,6 @@ class ProdAddClass(DataMixin, FormView):
         c_def = self.get_user_context()
         context["title"] = "ProdAdd"
         return dict(list(context.items()) + list(c_def.items()))
-    
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
-        
     
 class ShowPost(DataMixin, DetailView):
     model = Product
