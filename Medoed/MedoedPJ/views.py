@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from django.views.generic import ListView, DetailView, FormView, CreateView
+
 from .models import *
 from .utils import *
 from .forms import *
-
-from django.views.generic import ListView, DetailView, FormView, CreateView
-
 # Create your views here.
 
 
@@ -67,4 +67,15 @@ class ShowPost(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
     
     
-        
+class LoginUserr(DataMixin, LoginView):
+    form_class = LoginUserForm
+    template_name = "MedoedPJ/login.html"
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        context["title"] = "Авторизация"
+        return dict(list(context.items()) + list(c_def.items()))
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy("Home")
