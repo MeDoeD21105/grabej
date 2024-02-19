@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import *
 
 class Added_ProdForm(ModelForm):
@@ -12,3 +12,11 @@ class Added_ProdForm(ModelForm):
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label="Логин")
     password = forms.CharField(label="Пороль")
+    
+    
+    
+class RegisterUserForm(UserCreationForm):
+    username = forms.CharField(label="Логин")
+    password = forms.CharField(label="Пороль")
+    password = forms.CharField(label=" Повтор пороля")
+    

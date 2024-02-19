@@ -79,3 +79,17 @@ class LoginUserr(DataMixin, LoginView):
     
     def get_success_url(self) -> str:
         return reverse_lazy("Home")
+    
+    
+class RegisterUserr(DataMixin, CreateView):
+    form_class =  RegisterUserForm
+    template_name = "MedoedPJ/register.html"
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        context["title"] = "Регистрация"
+        return dict(list(context.items()) + list(c_def.items()))
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy("Home")

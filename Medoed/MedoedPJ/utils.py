@@ -4,6 +4,7 @@ points = [
         {"title":"Добавление продукта","url_name" : "add_prod"},
         {"title":"Связь с нами","url_name" : "contact"},
         {"title":"Авторизация","url_name" : "login"},
+        {"title":"Регистрация","url_name" : "register"},
           ]
 
 
