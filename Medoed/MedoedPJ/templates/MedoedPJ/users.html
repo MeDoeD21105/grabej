@@ -1,0 +1,10 @@
+{% extends "MedoedPJ/base.html" %}
+
+
+{% block info %}
+<ul>
+    {% for user_name in user_names %}
+      <li>{{ user_name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

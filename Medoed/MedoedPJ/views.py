@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.views.generic import ListView, DetailView, FormView, CreateView
+from django.contrib.auth.models import User
 
 from .models import *
 from .utils import *
@@ -93,3 +94,17 @@ class RegisterUserr(DataMixin, CreateView):
     
     def get_success_url(self) -> str:
         return reverse_lazy("Home")
+    
+class UsersClass(DataMixin,ListView):
+    model = Product
+    template_name = "MedoedPJ/users.html"
+    users = User.objects.all()
+    user_names = [user.username for user in users]
+
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context()
+        context["title"] = "Пользователи"
+        context["user_names"] = self.user_names
+        return dict(list(context.items()) + list(c_def.items()))

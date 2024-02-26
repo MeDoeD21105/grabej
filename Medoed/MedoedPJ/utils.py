@@ -5,6 +5,7 @@ points = [
         {"title":"Связь с нами","url_name" : "contact"},
         {"title":"Авторизация","url_name" : "login"},
         {"title":"Регистрация","url_name" : "register"},
+        {"title":"Пользователи","url_name" : "userrs"},
           ]
 
 
